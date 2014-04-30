@@ -1,0 +1,32 @@
+-- COLLISION NOTES --
+
+local function hasCollided(obj1, obj2)
+        if (obj1.x > (obj2.x + obj2.width)) then return false 
+                elseif ((obj1.x + obj1.width) < obj2.x) then return false 
+                elseif (obj1.y > (obj2.y + obj2.height)) then return false 
+                elseif ((obj1.y + obj1.height) < obj2.y) then return false 
+                else return true 
+        end
+end
+
+local function hasCollided(obj1, obj2)
+    if obj1 == nil then
+        return false
+    end
+    if obj2 == nil then
+        return false
+    end
+ 
+    local left = obj1.contentBounds.xMin <= obj2.contentBounds.xMin and obj1.contentBounds.xMax >= obj2.contentBounds.xMin
+    local right = obj1.contentBounds.xMin >= obj2.contentBounds.xMin and obj1.contentBounds.xMin <= obj2.contentBounds.xMax
+    local up = obj1.contentBounds.yMin <= obj2.contentBounds.yMin and obj1.contentBounds.yMax >= obj2.contentBounds.yMin
+    local down = obj1.contentBounds.yMin >= obj2.contentBounds.yMin and obj1.contentBounds.yMin <= obj2.contentBounds.yMax
+    return (left or right) and (up or down)
+end
+
+local function hasCollided(obj1, obj2)
+        return obj1.contentBounds.xMin < obj2.contentBounds.xMax
+                and obj1.contentBounds.xMax > obj2.contentBounds.xMin
+                and obj1.contentBounds.yMin < obj2.contentBounds.yMax
+                and obj1.contentBounds.yMax > obj2.contentBounds.yMin
+			end
